@@ -5,7 +5,6 @@
 #ifndef IPK1_STRUCTURES_H
 #define IPK1_STRUCTURES_H
 
-#include <lzma.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
         }
 
         char *serverResponse = createResponse(returnCode, responseBody);
-        printf("%s", serverResponse);
+//        printf("%s", serverResponse);
         ssize_t n = send(newsockfd, serverResponse, strlen(serverResponse), 0);
 
         if (n < 0) {

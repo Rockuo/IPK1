@@ -1,14 +1,42 @@
 #include "../genericFunctions.h"
-
+#define h_addr h_addr_list[0]
 #define FILEn "file"
 #define FOLDER "folder"
 
+/**
+ * @param serverName
+ * @param port
+ * @param content
+ * @return
+ */
 int sendRequest(char *serverName, uint16_t port, char *content);
 
+/**
+ *
+ * @param path
+ * @param server
+ * @param port
+ */
 void parsePath(char **path, char **server, char **port);
 
+/**
+ *
+ * @param action
+ * @param serverName
+ * @param path
+ * @param bodyLength
+ * @param encode
+ * @param type
+ * @return
+ */
 char *generateHeader(actionType action, char *serverName, char *path, size_t bodyLength, char *encode, char *type);
 
+/**
+ *
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[]) {
     CLIENT_OR_SERVER = CLIENT;
 
@@ -106,6 +134,12 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
 }
 
+/**
+ *
+ * @param path
+ * @param server
+ * @param port
+ */
 void parsePath(char **path, char **server, char **port) {
     if (sscanf((*path), "http://%s", (*path)) != 1) {
         fprintf(stderr, "Wrong path");
@@ -119,7 +153,13 @@ void parsePath(char **path, char **server, char **port) {
     *path = slashedPath;
 }
 
-
+/**
+ *
+ * @param serverName
+ * @param port
+ * @param content
+ * @return
+ */
 int sendRequest(char *serverName, uint16_t port, char *content) {
     int sockfd;
     ssize_t sendCount;
@@ -162,6 +202,16 @@ int sendRequest(char *serverName, uint16_t port, char *content) {
     return sockfd;
 }
 
+/**
+ *
+ * @param action
+ * @param serverName
+ * @param path
+ * @param bodyLength
+ * @param encode
+ * @param type
+ * @return
+ */
 char *generateHeader(actionType action, char *serverName, char *path, size_t bodyLength, char *encode, char *type) {
     const char *http = "HTTP/1.1";
     const char *host = "Host:";
